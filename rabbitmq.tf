@@ -21,9 +21,9 @@ resource "null_resource" "cluster" {
 
   provisioner "remote-exec" {
     connection {
-      user = jsondecode(data.aws_secretsmanager_secret_version.secret.secret_string)["SSH_USER"]
-      pass = jsondecode(data.aws_secretsmanager_secret_version.secret.secret_string)["SSH_PASS"]
-      host = aws_spot_instance_request.instance.private_ip
+      user     = jsondecode(data.aws_secretsmanager_secret_version.secret.secret_string)["SSH_USER"]
+      password = jsondecode(data.aws_secretsmanager_secret_version.secret.secret_string)["SSH_PASS"]
+      host     = aws_spot_instance_request.instance.private_ip
     }
     inline = [
       "ansible-pull -U https://github.com/phani-devops-practice/TRN-roboshop-ansilble.git roboshop.yml -e HOST=localhost -e ROLE=rabbitmq -e ENV=${var.ENV}"
