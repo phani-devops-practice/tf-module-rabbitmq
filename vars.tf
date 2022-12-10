@@ -7,6 +7,7 @@ variable "ALLOW_SG_CIDR" {}
 variable "VPC_ID" {}
 variable "PORT" {}
 variable "WORKSTATION_IP" {}
+variable "PRIVATE_ZONE_ID" {}
 
 
 
